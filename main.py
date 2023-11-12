@@ -15,6 +15,29 @@ player = Player(playerSpawn[level.currentLevel])
 
 level.calcLevel(screen)
 
+### --- Functions --- ###
+
+def checkBorderCollision():
+    if player.PlayerRt.collideobjects(level.borders[0]):
+        player.allowUp = False
+    else:
+        player.allowUp = True
+
+    if player.PlayerRt.collideobjects(level.borders[1]):
+        player.allowLeft = False
+    else:
+        player.allowLeft = True
+
+    if player.PlayerRt.collideobjects(level.borders[2]):
+        player.allowDown = False
+    else:
+        player.allowDown = True
+
+    if player.PlayerRt.collideobjects(level.borders[3]):
+        player.allowRight = False
+    else:
+        player.allowRight = True
+
 ### --- Game Loop --- ###
 
 while True:
@@ -23,10 +46,11 @@ while True:
             pg.quit()
             exit()
         
+    checkBorderCollision()
+    player.checkPlayerMovement()
+
     level.drawLevel(screen)
     player.drawPlayer(screen)
 
     pg.display.update()
     clock.tick(60)
-
-### --- Functions --- ###

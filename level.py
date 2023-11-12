@@ -22,18 +22,18 @@ levels = [
 class Level:
     def __init__(self, currentLevel):
         self.currentLevel = currentLevel
-        self.borders = []
+        self.borders = [[],[],[],[]] # 0 = Up | 1 = Left | 2 = Down | 3 = Right
         self.void = []
         self.start = []
         self.finish = []
+        self.backgroundSf = pg.image.load('./img/background.png').convert()
 
 
     def calcLevel(self,screen):
         x = 1
         y = 1
 
-        backgroundSf = pg.image.load('./img/background.png').convert()
-        screen.blit(backgroundSf,(0,0))
+        screen.blit(self.backgroundSf,(0,0))
 
         for l in range(len(levels[self.currentLevel])):
 
@@ -52,26 +52,28 @@ class Level:
                     pg.draw.rect(screen, (176,179,253), (x*50-50,y*50-50,50,50))
                 )
 
+                ### --- Borders --- ###
+
                 if not levels[self.currentLevel][l-22] == 'X':
-                    self.borders.append(
-                        pg.draw.line(screen, (0,0,0), (x*50-50,y*50-50+3), (x*50,y*50-50+3), 7)
+                    self.borders[2].append( # Down
+                        pg.draw.line(screen, (0,0,0), (x*50-50,y*50-50+1), (x*50,y*50-50+1), 7)
                     )
 
                 if l+22 < len(levels[self.currentLevel]):
                     if not levels[self.currentLevel][l+22] == 'X':
-                        self.borders.append(
-                            pg.draw.line(screen, (0,0,0), (x*50-50,y*50-3), (x*50,y*50-3), 7)
+                        self.borders[0].append( # Up
+                            pg.draw.line(screen, (0,0,0), (x*50-50,y*50-1), (x*50,y*50-1), 7)
                         )
 
                 if not levels[self.currentLevel][l-1] == 'X':
-                    self.borders.append(
-                        pg.draw.line(screen, (0,0,0), (x*50-50+3,y*50-50), (x*50-50+3,y*50), 7)
+                    self.borders[3].append( # Right
+                        pg.draw.line(screen, (0,0,0), (x*50-50+1,y*50-50), (x*50-50+1,y*50), 7)
                     )
 
                 if l+1 < len(levels[self.currentLevel]):
                     if not levels[self.currentLevel][l+1] == 'X':
-                        self.borders.append(
-                            pg.draw.line(screen, (0,0,0), (x*50-3,y*50-50), (x*50-3,y*50), 7)
+                        self.borders[1].append( # Left
+                            pg.draw.line(screen, (0,0,0), (x*50-1,y*50-50), (x*50-1,y*50), 7)
                         )
 
             if x == 22:
@@ -81,6 +83,8 @@ class Level:
                 x += 1
 
     def drawLevel(self, screen):
+        screen.blit(self.backgroundSf,(0,0))
+
         for i in range(len(self.void)):
             pg.draw.rect(screen, (176,179,253), self.void[i])
 
@@ -91,4 +95,5 @@ class Level:
             pg.draw.rect(screen, (172,236,174), self.finish[i])
 
         for i in range(len(self.borders)):
-            pg.draw.rect(screen, (0,0,0), self.borders[i])
+            for j in range(len(self.borders[i])):
+                pg.draw.rect(screen, (0,0,0), self.borders[i][j])
