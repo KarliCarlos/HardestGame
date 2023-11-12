@@ -11,7 +11,9 @@ pg.display.set_caption('The Worlds Hardest Game')
 clock = pg.time.Clock()
 
 level = Level(0)
-player = Player(200, 200)
+player = Player(playerSpawn[level.currentLevel])
+
+level.calcLevel(screen)
 
 ### --- Game Loop --- ###
 
@@ -26,3 +28,5 @@ while True:
 
     pg.display.update()
     clock.tick(60)
+
+### --- Functions --- ###
