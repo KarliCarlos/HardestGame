@@ -1,7 +1,7 @@
 import pygame as pg
 
 levels = [
-   ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
+   ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X', # Level 1
     'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
     'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
     'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
@@ -52,7 +52,7 @@ class Level:
                     pg.draw.rect(screen, (176,179,253), (x*50-50,y*50-50,50,50))
                 )
 
-                ### --- Borders --- ###
+                ### --- Borders --- ### //+-1 because of line thickness
 
                 if not levels[self.currentLevel][l-22] == 'X':
                     self.borders[2].append( # Down

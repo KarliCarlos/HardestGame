@@ -2,6 +2,7 @@ import pygame as pg
 from sys import exit
 from level import *
 from player import *
+from enemy import *
 
 ### --- Initialize Game --- ###
 
@@ -12,6 +13,9 @@ clock = pg.time.Clock()
 
 level = Level(0)
 player = Player(playerSpawn[level.currentLevel])
+enemies = []
+for e in range(len(enemyPath[level.currentLevel])):
+    enemies.append(Enemy(list(enemyPath[level.currentLevel][e][0]), e, level.currentLevel))
 
 level.calcLevel(screen)
 
@@ -51,6 +55,10 @@ while True:
 
     level.drawLevel(screen)
     player.drawPlayer(screen)
+    
+    for n in range(len(enemies)):           
+        enemies[n].movement()
+        enemies[n].drawEnemy(screen)
 
     pg.display.update()
     clock.tick(60)
