@@ -1,7 +1,8 @@
 import pygame as pg
 
 playerSpawn = [ # Per Level
-    (150+5, 300+5)
+    (150+5, 300+5), 
+    (100+25+5, 350+25+5)
 ]
 
 class Player:
@@ -22,16 +23,16 @@ class Player:
 
         if keys[pg.K_w]:
             if self.allowUp:
-                self.coords[1] -= 5
+                self.coords[1] -= 4
 
         if keys[pg.K_a]:
             if self.allowLeft:
-                self.coords[0] -= 5
+                self.coords[0] -= 4
 
         if keys[pg.K_s]:
             if self.allowDown:
-                self.coords[1] += 5
+                self.coords[1] += 4
 
         if keys[pg.K_d]:
             if self.allowRight:
-                self.coords[0] += 5
+                self.coords[0] += 4
