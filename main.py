@@ -42,6 +42,11 @@ def checkBorderCollision():
     else:
         player.allowRight = True
 
+def checkEnemyCollision():
+    for e in range(len(enemies)):
+        if player.PlayerRt.colliderect(enemies[e].EnemyRt):
+            player.coords = list(playerSpawn[level.currentLevel])
+
 ### --- Game Loop --- ###
 
 while True:
@@ -59,6 +64,7 @@ while True:
     for n in range(len(enemies)):           
         enemies[n].movement()
         enemies[n].drawEnemy(screen)
+    checkEnemyCollision()
 
     pg.display.update()
     clock.tick(60)

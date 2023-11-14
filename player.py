@@ -1,12 +1,12 @@
 import pygame as pg
 
 playerSpawn = [ # Per Level
-    [150+5, 300+5]
+    (150+5, 300+5)
 ]
 
 class Player:
     def __init__(self, coords):
-        self.coords = coords
+        self.coords = list(coords)
         self.allowUp = True
         self.allowLeft = True
         self.allowDown = True
