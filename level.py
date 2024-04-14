@@ -1,40 +1,40 @@
 import pygame as pg
 
 levels = [                                   #   #
-   ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X', # Level 1
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','S','S','S','X','X','X','X','X','X','X','X','X','X','O','O','Z','Z','Z','X','X',
-    'X','X','S','S','S','X','O','O','O','O','O','O','O','O','O','O','X','Z','Z','Z','X','X',
-    'X','X','S','S','S','X','O','O','O','O','O','O','O','O','O','O','X','Z','Z','Z','X','X', #mid
-    'X','X','S','S','S','X','O','O','O','O','O','O','O','O','O','O','X','Z','Z','Z','X','X', #mid
-    'X','X','S','S','S','X','O','O','O','O','O','O','O','O','O','O','X','Z','Z','Z','X','X',
-    'X','X','S','S','S','O','O','X','X','X','X','X','X','X','X','X','X','Z','Z','Z','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X' ],
+   [['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'], # Level 1
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','S','S','S','X','X','X','X','X','X','X','X','X','X','O','O','Z','Z','Z','X','X'],
+    ['X','X','S','S','S','X','O','O','O','O','O','O','O','O','O','O','X','Z','Z','Z','X','X'],
+    ['X','X','S','S','S','X','O','O','O','O','O','O','O','O','O','O','X','Z','Z','Z','X','X'], #mid
+    ['X','X','S','S','S','X','O','O','O','O','O','O','O','O','O','O','X','Z','Z','Z','X','X'], #mid
+    ['X','X','S','S','S','X','O','O','O','O','O','O','O','O','O','O','X','Z','Z','Z','X','X'],
+    ['X','X','S','S','S','O','O','X','X','X','X','X','X','X','X','X','X','Z','Z','Z','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X']],
 
                                              #   #
-   ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X', # Level 2
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X',
-    'X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X',
-    'X','X','S','S','S','O','O','O','O','O','O','O','O','O','O','O','O','Z','Z','Z','X','X', #mid
-    'X','X','S','S','S','O','O','O','O','O','O','O','O','O','O','O','O','Z','Z','Z','X','X', #mid
-    'X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X',
-    'X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X',
-    'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X' ]
+   [['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'], # Level 2
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X'],
+    ['X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X'],
+    ['X','X','S','S','S','O','O','O','O','O','O','O','O','O','O','O','O','Z','Z','Z','X','X'], #mid
+    ['X','X','S','S','S','O','O','O','O','O','O','O','O','O','O','O','O','Z','Z','Z','X','X'], #mid
+    ['X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X'],
+    ['X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X']]
     ]
 
 class Level:
@@ -45,60 +45,58 @@ class Level:
         self.start = []
         self.finish = []
         self.backgroundSf = pg.image.load('./img/background.png').convert()
+        self.lineThickness = 5
 
 
     def calcLevel(self,screen):
-        x = 1
-        y = 1
 
         screen.blit(self.backgroundSf,(0,0))
 
-        for l in range(len(levels[self.currentLevel])):
-
-            if levels[self.currentLevel][l] == 'S':
-                self.start.append(
-                    pg.draw.rect(screen, (172,236,174), (x*50-50,y*50-50,50,50))
-                )
+        for y in range(len(levels[self.currentLevel])):
             
-            elif levels[self.currentLevel][l] == 'Z':
-                self.finish.append(
-                    pg.draw.rect(screen, (172,236,174), (x*50-50,y*50-50,50,50))
-                )
-
-            elif levels[self.currentLevel][l] == 'X':
-                self.void.append(
-                    pg.draw.rect(screen, (176,179,253), (x*50-50,y*50-50,50,50))
-                )
-
-                ### --- Borders --- ### //+-1 because of line thickness
-
-                if not levels[self.currentLevel][l-22] == 'X':
-                    self.borders["down"].append(
-                        pg.draw.line(screen, (0,0,0), (x*50-50,y*50-50+1), (x*50,y*50-50+1), 7)
+            for x in range(len(levels[self.currentLevel][y])):
+                if levels[self.currentLevel][y][x] == 'X':
+                    self.void.append(
+                        pg.draw.rect(screen, (176,179,253), (x*50,y*50,50,50))
                     )
-
-                if l+22 < len(levels[self.currentLevel]):
-                    if not levels[self.currentLevel][l+22] == 'X':
-                        self.borders["up"].append(
-                            pg.draw.line(screen, (0,0,0), (x*50-50,y*50-1), (x*50,y*50-1), 7)
+                else:
+                    if levels[self.currentLevel][y][x] == 'S':
+                        self.start.append(
+                            pg.draw.rect(screen, (172,236,174), (x*50,y*50,50,50))
+                        )
+                    
+                    if levels[self.currentLevel][y][x] == 'Z':
+                        self.finish.append(
+                            pg.draw.rect(screen, (172,236,174), (x*50,y*50,50,50))
                         )
 
-                if not levels[self.currentLevel][l-1] == 'X':
-                    self.borders["right"].append(
-                        pg.draw.line(screen, (0,0,0), (x*50-50+1,y*50-50), (x*50-50+1,y*50), 7)
-                    )
+                    self.calcBorders(screen, x, y) 
 
-                if l+1 < len(levels[self.currentLevel]):
-                    if not levels[self.currentLevel][l+1] == 'X':
-                        self.borders["left"].append(
-                            pg.draw.line(screen, (0,0,0), (x*50-1,y*50-50), (x*50-1,y*50), 7)
-                        )
+    def calcBorders(self, screen, x, y): #+-3 because of line thickness
+        if y+1 <= len(levels[self.currentLevel]):
+            if levels[self.currentLevel][y+1][x] == 'X':
+                self.borders["down"].append(
+                    pg.draw.line(screen, (0,0,0), (x*50,y*50+49+self.lineThickness/2), (x*50+49,y*50+49+self.lineThickness/2), self.lineThickness)
+                )
 
-            if x == 22:
-                x = 1
-                y += 1
-            else:
-                x += 1
+        if y-1 >= 0:
+            if levels[self.currentLevel][y-1][x] == 'X':
+                self.borders["up"].append(
+                    pg.draw.line(screen, (0,0,0), (x*50,y*50-self.lineThickness/2), (x*50+49,y*50-self.lineThickness/2), self.lineThickness)
+                )
+
+        if x+1 <= len(levels[self.currentLevel][0]):
+            if levels[self.currentLevel][y][x+1] == 'X':
+                self.borders["right"].append(
+                    pg.draw.line(screen, (0,0,0), (x*50+49+self.lineThickness/2,y*50+50-50), (x*50+49+self.lineThickness/2,y*50+49), self.lineThickness)
+                )
+
+        if x-1 >= 0:
+            if levels[self.currentLevel][y][x-1] == 'X':
+                self.borders["left"].append(
+                    pg.draw.line(screen, (0,0,0), (x*50-self.lineThickness/2,y*50), (x*50-self.lineThickness/2,y*50+49), self.lineThickness)
+                )
+        
 
     def drawLevel(self, screen):
         screen.blit(self.backgroundSf,(0,0))
