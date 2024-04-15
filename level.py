@@ -46,6 +46,7 @@ class Level:
         self.finish = []
         self.backgroundSf = pg.image.load('./img/background.png').convert()
         self.lineThickness = 5
+        self.loadedVoidTiles = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
 
 
     def calcLevel(self,screen):
@@ -113,3 +114,10 @@ class Level:
         for i in self.borders.items():
             for j in i[1]:
                 pg.draw.rect(screen, (0,0,0), j)
+
+    def getVoidTiles(self, loadedTilesPos):
+        for j, i in enumerate(loadedTilesPos):
+            if levels[self.currentLevel][i[1]][i[0]] == 'X':
+                self.loadedVoidTiles[j] = self.void.index(pg.Rect(i[0]*50,i[1]*50,50,50))
+                continue
+            self.loadedVoidTiles[j] = -1

@@ -25,6 +25,8 @@ enemyPath = [
 
 enemySpeed = [9, 6]
 
+loadedVoidTiles = []
+
 class Enemy:
     def __init__(self, coords, n, level, speed):
         self.coords = coords
