@@ -23,7 +23,7 @@ enemyPath = [
     ]
 ]
 
-enemySpeed = [9, 6]
+enemySpeed = [8, 6]
 
 loadedVoidTiles = []
 

@@ -38,18 +38,23 @@ levels = [                                   #   #
     ]
 
 class Level:
-    def __init__(self, currentLevel):
+    def __init__(self, currentLevel, GAME):
         self.currentLevel = currentLevel
-        self.borders = {"up": [],"left": [],"down": [],"right": []} # 0 = Up | 1 = Left | 2 = Down | 3 = Right
+        self.borders = {"up": [],"left": [],"down": [],"right": []}
         self.void = []
         self.start = []
         self.finish = []
         self.backgroundSf = pg.image.load('./img/background.png').convert()
         self.lineThickness = 5
         self.loadedVoidTiles = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
+        self.main = GAME
 
 
     def calcLevel(self,screen):
+        self.void = []
+        self.start = []
+        self.finish = []
+        self.borders = {"up": [],"left": [],"down": [],"right": []}
 
         screen.blit(self.backgroundSf,(0,0))
 
@@ -121,3 +126,6 @@ class Level:
                 self.loadedVoidTiles[j] = self.void.index(pg.Rect(i[0]*50,i[1]*50,50,50))
                 continue
             self.loadedVoidTiles[j] = -1
+
+            if j == 4 and levels[self.currentLevel][i[1]][i[0]] == 'Z':
+                self.main.nextLevel()
