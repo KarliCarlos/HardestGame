@@ -23,37 +23,6 @@ level.calcLevel(screen)
 
 ## --- Functions --- ###
 
-# 0 1 2
-# 3 4 5     4 = Player
-# 6 7 8
-
-def checkBorderCollision():
-    for i, j in enumerate(level.loadedVoidTiles):
-        if level.loadedVoidTiles[i] != -1:
-            if i == 0 or i == 1 or i == 2:
-                if player.PlayerRt.colliderect(level.void[j]):
-                    player.allowUp = False
-                else:
-                    player.allowUp = True
-
-            if i == 0 or i == 3 or i == 6:
-                if player.PlayerRt.colliderect(level.void[j]):
-                    player.allowLeft = False
-                else:
-                    player.allowLeft = True
-
-            if i == 6 or i == 7 or i == 8:
-                if player.PlayerRt.colliderect(level.void[j]):
-                    player.allowDown = False
-                else:
-                    player.allowDown = True
-
-            if i == 2 or i == 5 or i == 8:
-                if player.PlayerRt.colliderect(level.void[j]):
-                    player.allowRight = False
-                else:
-                    player.allowRight = True
-
 def checkEnemyCollision():
     for e in range(len(enemies)):
         if player.PlayerRt.colliderect(enemies[e].EnemyRt):
@@ -68,7 +37,7 @@ while True:
             pg.quit()
             exit()
         
-    checkBorderCollision()
+    #checkBorderCollision()
     player.checkPlayerMovement()
 
     level.drawLevel(screen)
