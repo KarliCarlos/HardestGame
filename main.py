@@ -2,7 +2,7 @@ import pygame as pg
 from sys import exit
 from level import *
 from player import *
-from enemy import *
+from enemyTypes import *
 
 ### --- Initialize Game --- ###
 
@@ -14,7 +14,7 @@ clock = pg.time.Clock()
 ### --- Main Class --- ###
 class Main:
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.level = Level(-1, self)
         self.player = Player(self.level)
         self.font = pg.font.SysFont("Cascadia Code Semi Bold", 50)
@@ -27,13 +27,14 @@ class Main:
         self.level.currentLevel += 1
         self.level.calcLevel(screen)
         self.enemies = []
-        for e in range(len(enemyPath[self.level.currentLevel])):
-            self.enemies.append(Enemy(list(enemyPath[self.level.currentLevel][e][0]), e, self.level.currentLevel, enemySpeed[self.level.currentLevel]))
-        self.player.PlayerRt.center = PLAYERSPAWN[self.level.currentLevel]
+        straight = EnemyDict[1]["Straight"]
+        for i in range(len(straight["Start"])):
+            self.enemies.append(StraightEnemy(screen, straight["xSpeed"][i], straight["ySpeed"][i], straight["Start"][i], straight["Finish"][i]))
+        self.player.Rt.center = PLAYERSPAWN[self.level.currentLevel]
 
     def checkEnemyCollision(self):
         for e in range(len(self.enemies)):
-            if self.player.PlayerRt.colliderect(self.enemies[e].EnemyRt):
+            if self.player.Rt.colliderect(self.enemies[e].Rt):
                 return True
                 
 
@@ -51,11 +52,12 @@ class Main:
             self.player.drawPlayer(screen)
             screen.blit(self.font.render(f"Deaths: {self.deaths}", True, "#000000"), (100, 50))
             
-            for n in range(len(self.enemies)):           
+            for n in range(len(self.enemies)):
                 self.enemies[n].movement()
-                self.enemies[n].drawEnemy(screen)
+                self.enemies[n].checkSpeed()
+                self.enemies[n].draw()
             if self.checkEnemyCollision():
-                self.player.PlayerRt.center = PLAYERSPAWN[self.level.currentLevel]
+                self.player.Rt.center = PLAYERSPAWN[self.level.currentLevel]
                 self.deaths += 1
 
             pg.display.update()
