@@ -16,7 +16,59 @@ EnemyDict = {
         "Circular": {
 
         },
-    }    
+    },
+    2: {
+        "Straight": {
+                "Start":   [(250+25,500+25),
+                            (300+25,250+25),
+                            (350+25,500+25),
+                            (400+25,250+25),
+                            (450+25,500+25),
+                            (500+25,250+25),
+                            (550+25,500+25),
+                            (600+25,250+25),
+                            (650+25,500+25),
+                            (700+25,250+25),
+                            (750+25,500+25),
+                            (800+25,250+25)],
+                "Finish":  [(250+25,250+25),
+                            (300+25,500+25),
+                            (350+25,250+25),
+                            (400+25,500+25),
+                            (450+25,250+25),
+                            (500+25,500+25),
+                            (550+25,250+25),
+                            (600+25,500+25),
+                            (650+25,250+25),
+                            (700+25,500+25),
+                            (750+25,250+25),
+                            (800+25,500+25)],
+                "xSpeed":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "ySpeed":  [-6, +6, -6, +6, -6, +6, -6, +6, -6, +6, -6, +6]
+        },
+        "Square": {
+
+        },
+        "Circular": {
+
+        },
+    },
+    3: {
+        "Straight": {
+                "Start":    [],
+                "Finish":   [],
+                "xSpeed":   [],
+                "ySpeed":   []
+        },
+        "Square": {
+                "Path":  [],
+                "Speed": [],
+                
+        },
+        "Circular": {
+
+        },
+    }
 }
 
 class StraightEnemy(Enemy):
@@ -39,12 +91,12 @@ class StraightEnemy(Enemy):
 
         if self.ySpeed > 0:
             if self.Rt.centery > self.finish[1]:
-                self.Rt.centerx = self.finish[1]
+                self.Rt.centery = self.finish[1]
                 self.ySpeed *= -1
                 self.start, self.finish = self.finish, self.start
         if self.ySpeed < 0:
             if self.Rt.centery < self.finish[1]:
-                self.Rt.centerx = self.finish[1]
+                self.Rt.centery = self.finish[1]
                 self.ySpeed *= -1
                 self.start, self.finish = self.finish, self.start
 

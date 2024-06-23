@@ -1,6 +1,8 @@
+from tabnanny import check
 import pygame as pg
 
-levels = [                                   #   #
+levels = [
+   [], #home
    [['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'], # Level 1
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
@@ -18,7 +20,7 @@ levels = [                                   #   #
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X']],
 
-                                             #   #
+                                              #   #
    [['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'], # Level 2
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
@@ -30,6 +32,24 @@ levels = [                                   #   #
     ['X','X','S','S','S','O','O','O','O','O','O','O','O','O','O','O','O','Z','Z','Z','X','X'], #mid
     ['X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X'],
     ['X','X','X','X','X','O','O','O','O','O','O','O','O','O','O','O','O','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X']],
+
+                                              #   #
+   [['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'], # Level 3
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','O','X','X','X','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','O','O','O','O','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','O','Z','Z','O','X','X','X','X','X','X','X','X','X'], #mid
+    ['X','X','X','X','X','X','X','X','X','O','Z','Z','O','X','X','X','X','X','X','X','X','X'], #mid
+    ['X','X','X','X','X','X','X','X','X','O','O','O','O','X','X','X','X','X','X','X','X','X'],
+    ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'],
@@ -120,7 +140,7 @@ class Level:
             for j in i[1]:
                 pg.draw.rect(screen, (0,0,0), j)
 
-    def getVoidTiles(self, loadedTilesPos):
+    def checkTiles(self, loadedTilesPos):
         for j, i in enumerate(loadedTilesPos):
             if levels[self.currentLevel][i[1]][i[0]] == 'X':
                 self.loadedVoidTiles[j] = self.void.index(pg.Rect(i[0]*50,i[1]*50,50,50))
@@ -128,4 +148,10 @@ class Level:
             self.loadedVoidTiles[j] = -1
 
             if j == 4 and levels[self.currentLevel][i[1]][i[0]] == 'Z':
-                self.main.nextLevel()
+                self.checkCoins()
+
+    def checkCoins(self):
+        for c in self.main.coins:
+            if c.collected == False:
+                return
+        self.main.switchLevel(self.currentLevel+1)

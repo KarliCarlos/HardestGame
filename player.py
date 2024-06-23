@@ -1,8 +1,10 @@
 import pygame as pg
 
 PLAYERSPAWN = [ # Per Level
+            None,
             (150+25, 300+25), 
-            (100+25, 350+25)
+            (100+25, 350+25),
+            (550, 400)
         ]
 
 loadedTilesPos = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
@@ -16,6 +18,7 @@ class Player:
         self.Rt = pg.Rect(PLAYERSPAWN[level.currentLevel][0], PLAYERSPAWN[level.currentLevel][1], 40, 40)
         self.TilePos = [0,0]
         self.speed = 4
+        self.coinsCollected = 0
     
     def drawPlayer(self, screen):
         self.Rt = pg.draw.rect(screen, '#ff0000', self.Rt)  
@@ -34,7 +37,7 @@ class Player:
         loadedTilesPos[6] = [self.TilePos[0]-1,self.TilePos[1]+1]
         loadedTilesPos[7] = [self.TilePos[0],self.TilePos[1]+1]
         loadedTilesPos[8] = [self.TilePos[0]+1,self.TilePos[1]+1]
-        self.level.getVoidTiles(loadedTilesPos)
+        self.level.checkTiles(loadedTilesPos)
 
     def checkPlayerMovement(self):
         keys = pg.key.get_pressed()
